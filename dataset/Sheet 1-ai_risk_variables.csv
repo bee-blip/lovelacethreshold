@@ -1,0 +1,241 @@
+ID,Variable,Short definition,Stage,Governed,Regulatory gap,Rate of risk,Suggested mitigation
+1,Training data provenance,Sources and origin metadata for training datasets,Data,Partial,Moderate,Critical/Urgent,"Record source, obtain consent where needed, provenance tags"
+2,Data quality controls,"Standards for labeling accuracy, consistency, and noise reduction",Data,Partial,Moderate,Critical/Urgent,"Establish QA pipelines, inter-annotator agreement, audits"
+3,Personal data inclusion,"Use of personal, private, or sensitive data in training corpora",Data,Partial,Large,Critical/Urgent,"Remove PII, apply differential privacy and consent frameworks"
+4,Dataset versioning & lineage,"Tracking changes, merges, and versions of datasets",Data,Partial,Moderate,High,Implement dataset registry and immutable versioning
+5,Dataset deduplication rules,Methods and thresholds for removing duplicate records,Data,No,Moderate,High,"Define and automate deduplication, log decisions"
+6,Label taxonomy choices,How labels/categories are defined and granularity,Data,No,Moderate,High,"Include stakeholder input, document taxonomies"
+7,Labeler recruitment & incentives,"How annotators are selected, paid, and incentivized",Data,No,Large,High,"Fair pay, training, bias mitigation, audits"
+8,Labeler instructions & guidelines,Guidance given to human annotators,Data,Partial,Moderate,High,"Standardize guidelines, examples, and review cycles"
+9,Labeler quality monitoring,Ongoing checks on annotator performance,Data,No,Moderate,High,"Use gold tests, periodic review, and feedback"
+10,Synthetic data generation practices,Creation and use of synthetic datasets,Data,No,Large,High,"Document synthesis methods, test for artifacts and bias"
+11,Data augmentation techniques,"Transforms applied to expand data (e.g., noise, crop)",Data,No,Moderate,Medium,"Track augmentations, validate distributional impact"
+12,Metadata retention & stripping,Policies for keeping or removing metadata from sources,Data,Partial,Large,High,"Strip identifiers, or store minimal metadata with protections"
+13,Cross-border data transfers,Movement of dataset copies across jurisdictions,Legal/Compliance,Partial,Large,Critical/Urgent,"Comply with data transfer rules, use SCCs, localize data"
+14,Consent & licensing compliance,Permissions and licenses for data use,Legal/Compliance,Partial,Large,Critical/Urgent,"Maintain license registry, get explicit consents"
+15,Use of copyrighted/ licensed corpora,Training on proprietary or copyrighted materials,Legal/Compliance,Partial,Large,Critical/Urgent,"Seek licenses, record usage, consider exclusions"
+16,Minority subpopulation exclusion criteria,Rules that exclude underrepresented groups from datasets,Data,No,Large,High,"Review inclusion criteria, create supplemental datasets"
+17,Sampling strategies & priors,How training samples are selected and weighted,Data,No,Moderate,High,Document sampling schemes and justify priors
+18,Holdout set construction,Creation of validation/test sets representative of deployment,Evaluation,Partial,Moderate,High,"Create immutable holdouts, diverse representation"
+19,Unavailable or non-representative holdouts,Missing representative holdout datasets,Evaluation,No,Large,High,"Establish representative, guarded testbeds"
+20,Benchmark selection & manipulation,Choice and possible gaming of evaluation benchmarks,Evaluation,No,Large,High,"Use multiple benchmarks, prefer realistic tasks"
+21,Pretraining curriculum & sampling schedules,Order and timing of pretraining data exposure,Training & Tuning,No,Large,High,Document curriculum and test sensitivity to schedules
+22,Pretraining objectives & loss functions,Choice of training objectives and surrogate losses,Model Design,Partial,Moderate,High,Evaluate objectives for alignment and robustness
+23,Proxy objectives & reward shaping,Use of proxy metrics that may misalign incentives,Model Design,No,Large,Critical/Urgent,"Align proxies with human values, multi-objective training"
+24,Model architecture choices,Design decisions for model structure and components,Model Design,Partial,Moderate,Medium,Document architecture rationale and evaluate failure modes
+25,Tokenizer/vocabulary construction,How text is tokenized and vocabularies defined,Model Design,Partial,Moderate,Medium,Test on multilingual and edge-case inputs
+26,Pretrained component reuse,Using external pretrained models or checkpoints,Tooling & Infrastructure,Partial,Moderate,High,"Vet provenance, evaluate inherited biases"
+27,Transfer learning & fine-tuning data,Data used in subsequent fine-tuning phases,Training & Tuning,Partial,Moderate,High,"Audit fine-tune datasets, maintain lineage"
+28,Iterative fine-tuning loops,Continuous adaptation loops post-deployment,Deployment Prep & Monitoring,No,Large,Critical/Urgent,"Apply gating, monitor drift, require approvals"
+29,Hyperparameter tuning processes,Automated or manual search prioritizing performance,Training & Tuning,No,Moderate,Medium,Include safety objectives in tuning
+30,Random-seed management & reproducibility,Control and documentation of randomness in experiments,Tooling & Infrastructure,No,Small,Medium,"Log seeds, make experiments reproducible"
+31,Model pruning & compression choices,Techniques that change model capacity and behavior,Model Design,No,Moderate,Medium,Validate compressed models against original safety tests
+32,Automated model-editing tools,Programmatic weight edits or patching,Tooling & Infrastructure,No,Large,High,"Restrict access, log edits, require review"
+33,Embedding & intermediate artifact release,"Sharing embeddings, checkpoints, or features externally",Tooling & Infrastructure,Partial,Large,High,"Restrict releases, apply licensing and access controls"
+34,Security of dev environments,"Protections against theft, poisoning, or leakage during research",Tooling & Infrastructure,Partial,Large,Critical/Urgent,"Harden environments, IAM, auditing, network controls"
+35,Access to compute resources,Who can provision large-scale compute and how,Tooling & Infrastructure,No,Large,Critical/Urgent,"Access controls, approval workflows, monitoring"
+36,Compute concentration risks,Centralized access enabling rapid capability scaling,Tooling & Infrastructure,No,Large,Critical/Urgent,"Diverse procurement, oversight of large jobs"
+37,Dependency & library management,Third-party libraries and their vulnerabilities,Tooling & Infrastructure,Partial,Moderate,High,"Pin versions, CVE monitoring, SBOMs"
+38,CI/CD gating for models,Automated pipelines for deployment with checks,Tooling & Infrastructure,Partial,Moderate,High,"Enforce safety gates, require approvals for releases"
+39,Experiment metadata logging,"Recording parameters, datasets, outcomes of experiments",Tooling & Infrastructure,Partial,Moderate,High,Centralized experiment tracking and retention policies
+40,Undocumented default settings,Default parameters in internal tools that are unrecorded,Tooling & Infrastructure,No,Moderate,High,Document defaults and require explicit overrides
+41,Model interpretability tools usage,Availability and use of explainability methods in dev,Evaluation,Partial,Moderate,Medium,Integrate interpretable models and explanations into reviews
+42,Internal evaluation criteria,Proprietary metrics that ignore fairness or safety,Evaluation,No,Large,High,Adopt multi-metric evaluations including safety/fairness
+43,Adversarial robustness testing,Tests against adversarial inputs and attacks,Evaluation,Partial,Moderate,High,Regular adversarial testing and red-teaming
+44,Red-team scope & resourcing,Extent and scale of adversarial testing exercises,Evaluation,No,Moderate,High,"Fund red teams, define scope, integrate findings"
+45,Internal threat modeling practices,Structured threat analysis during design,Team & Processes,No,Moderate,High,Embed threat modeling in design sprints
+46,Safety red-team tooling,Tools and harnesses for adversarial evaluation,Tooling & Infrastructure,No,Moderate,High,Develop internal tools and share learnings
+47,Human-in-the-loop protocols,When humans intervene in model decisions,Deployment Prep & Monitoring,Partial,Moderate,Critical/Urgent,"Define HITL rules, training, and escalation paths"
+48,Defaults for safety filters in dev builds,Safety filters enabled/disabled during internal testing,Tooling & Infrastructure,No,Large,Critical/Urgent,Ensure dev builds include realistic filters or label as unsafe
+49,Moderation & content policy definitions,Internal safety policies for generated content,Policy,Partial,Moderate,High,"Standardize policies, align with law and ethics"
+50,Prompt corpora & instruction sets,Internal prompts used to steer models during training,Training & Tuning,No,Large,High,Audit prompt corpora and document riskier instructions
+51,Few-shot/one-shot example selection,Choosing examples for in-context learning,Training & Tuning,No,Moderate,Medium,Diversify examples and document selection rationale
+52,Simulation environment fidelity,Realism of simulated environments used for RL or testing,Training & Tuning,No,Moderate,High,Validate sims against real-world distributions
+53,Feedback-loop selection bias,Training on deployment logs that bias models,Data,No,Large,High,"Correct for selection bias, maintain separate evaluation sets"
+54,Deployment logging & telemetry policies,What user data is logged and stored in deployment,Deployment Prep & Monitoring,Partial,Large,Critical/Urgent,"Minimize logs, anonymize, clear retention policies"
+55,User data retention rules,How long user inputs are stored,Legal/Compliance,Partial,Large,Critical/Urgent,"Define retention limits, offer deletion mechanisms"
+56,Anonymization & de-identification methods,Techniques to remove identifying info from data,Data,Partial,Moderate,High,"Use differential privacy, k-anonymity with evaluation"
+57,Differential privacy application,Use of DP algorithms to protect individual data,Data,Partial,Moderate,High,Apply DP where personal data present; audit epsilon values
+58,Synthetic user simulation methods,How synthetic users are generated for testing,Testing,No,Moderate,Medium,Document methods and test for artifacts
+59,Model attribution & watermarking,Techniques to identify model outputs,Tooling & Infrastructure,No,Moderate,Medium,Consider watermarking for provenance and abuse tracking
+60,Evaluation on vulnerable groups,Testing performance on protected or vulnerable populations,Evaluation,No,Large,Critical/Urgent,Ensure targeted audits and remedial data collection
+61,Bias mitigation techniques,Methods applied to reduce model bias,Model Design,Partial,Moderate,High,"Implement and evaluate bias mitigation, document tradeoffs"
+62,Accessibility testing standards,Testing for users with disabilities,Evaluation,No,Moderate,High,Include accessibility benchmarks and engage users with disabilities
+63,Model calibration practices,Techniques to ensure output probabilities are meaningful,Model Design,No,Moderate,Medium,Calibrate models and monitor over time
+64,Undisclosed performance tradeoffs,Hidden tradeoffs between accuracy and safety,Team & Processes,No,Large,High,Document tradeoffs and require sign-off for risky optimizations
+65,Internal escalation paths for harms,How detected harms are escalated within org,Team & Processes,Partial,Moderate,Critical/Urgent,"Create clear escalation, roles, and timelines"
+66,Responsible disclosure programs,Bug bounty and external vulnerability reporting,External Dependencies,Partial,Moderate,High,Establish programs and response SLAs
+67,Third-party vendor vetting,"Due diligence for external data, models, or services",External Dependencies,Partial,Large,High,Vendor risk assessments and contractual safeguards
+68,Federated learning protocols,How federated training is conducted and secured,Tooling & Infrastructure,No,Large,High,"Secure aggregation, incentive alignment, and audits"
+69,Multi-party training governance,Governance of joint training across organizations,Legal/Compliance,No,Large,High,"Define governance, roles, liabilities, and data controls"
+70,Economic/market incentives,Business incentives that influence development choices,Team & Processes,No,Large,Critical/Urgent,Align KPIs with safety and long-term impact
+71,Research publication norms,What is shared in preprints and code releases,External Dependencies,Partial,Moderate,High,"Red-team before release, share safety notes with publications"
+72,Open-source release policies,"Rules for releasing models, code, and weights",External Dependencies,Partial,Large,High,Risk assessments and staged release policies
+73,Licensing choices for artifacts,License terms for released models and data,Legal/Compliance,Partial,Moderate,Medium,Choose licenses that limit misuse and ensure traceability
+74,Model naming and documentation,How models are labeled and documented internally,Team & Processes,Partial,Small,Low,Standardized model cards and documentation templates
+75,Model cards & datasheets availability,Public/internal docs describing models and datasets,Policy,Partial,Moderate,High,Publish model cards and datasheets for audits
+76,Environmental/resource accounting,Carbon/emissions and resource costs of training,Tooling & Infrastructure,No,Moderate,Medium,"Track emissions, optimize efficiency, offset prudently"
+77,Sustainability assumptions in design,Implicit assumptions about energy and resource use,Tooling & Infrastructure,No,Moderate,Low,Document assumptions and monitor resource use
+78,Undisclosed multilingual support limits,Lack of documented performance per language,Evaluation,No,Moderate,High,Benchmark per language and document limitations
+79,Rare-language & low-resource data handling,How minority languages are included or excluded,Data,No,Large,High,"Collect targeted corpora, engage native speakers"
+80,Tokenizer handling of emojis/code/mixed scripts,Tokenizer behavior on diverse inputs,Model Design,No,Moderate,Medium,Test tokenizer on varied inputs and edge cases
+81,Multimodal alignment rules,How cross-modal pairings are created and validated,Data,No,Large,High,Document pairing rules and validate alignment quality
+82,Vision-language pairing fidelity,Quality of image-text pairs used in training,Data,No,Large,High,"Curate pairs, detect misalignments, manual review"
+83,Labeler labor conditions,"Worker protections, pay, and mental-health safeguards",Team & Processes,No,Large,High,"Fair labor practices, rotations, support systems"
+84,Compensation-linked quality effects,Effect of payment rates on label quality,Team & Processes,No,Moderate,Medium,Calibrate pay and QA to ensure quality
+85,Internal knowledge silos,"Communication gaps between product, research, safety teams",Team & Processes,No,Moderate,High,"Cross-team meetings, shared documentation, governance boards"
+86,Secret/test corpora handling,Management of private datasets used for evaluation,Data,No,Moderate,High,"Access controls, logging, and limited sharing policies"
+87,Unlogged experiment branches,Experiments run without proper tracking,Tooling & Infrastructure,No,Moderate,High,Enforce experiment logging and approvals
+88,Model ownership & stewardship,Clear assignment of responsibility for models,Team & Processes,Partial,Moderate,High,"Define owners, stewards, and lifecycle responsibilities"
+89,Internal training for safety practices,Education and onboarding for safe development,Team & Processes,Partial,Moderate,High,Mandatory safety training and refreshers
+90,Standards for human overrides,Rules for when humans can override model outputs,Deployment Prep & Monitoring,No,Moderate,Critical/Urgent,"Formalize override rules, auditing, and logging"
+91,Fallback strategies for failures,Plans when model fails or produces unsafe output,Deployment Prep & Monitoring,No,Moderate,High,Define safe fallbacks and circuit breakers
+92,Monitoring for distributional shift,Systems to detect data drift post-deployment,Deployment Prep & Monitoring,Partial,Moderate,High,Drift detectors and retraining triggers
+93,Continuous monitoring SLAs,Agreed service levels for monitoring and response,Deployment Prep & Monitoring,No,Moderate,High,Define SLAs and incident response plans
+94,Alerting thresholds & on-call rotations,Operational thresholds and personnel assignments,Deployment Prep & Monitoring,Partial,Moderate,High,"Define thresholds, runbooks, and rotations"
+95,User reporting & remediation channels,How users report harms and get remediation,Deployment Prep & Monitoring,Partial,Moderate,High,Provide clear channels and timely responses
+96,Responsible rollback procedures,Safe rollbacks for harmful releases,Deployment Prep & Monitoring,Partial,Moderate,Critical/Urgent,Test rollback procedures and authority
+97,Model update policies,Frequency and governance of model updates,Team & Processes,Partial,Moderate,High,"Define update cadence, safety checks, and documentation"
+98,A/B test ethics & sampling,Ethical procedures for experiments involving users,Deployment Prep & Monitoring,No,Large,High,Ethics review for A/B tests and informed consent when needed
+99,User consent UX patterns,How consent is obtained and displayed,Legal/Compliance,Partial,Moderate,High,Clear consent UI and granular choices
+100,Privacy-preserving deployment options,"Techniques for limited exposure of models (e.g., on-device)",Tooling & Infrastructure,Partial,Moderate,Medium,Explore on-device inference and encrypted computation
+101,Encryption of data at rest and transit,Use of encryption for stored and transmitted data,Tooling & Infrastructure,Partial,Small,Medium,Enforce encryption and key management best practices
+102,Key management practices,Handling of cryptographic keys,Tooling & Infrastructure,Partial,Moderate,High,Enterprise KMS and rotation policies
+103,Access controls and IAM,"Who can access models, data, and infra",Tooling & Infrastructure,Partial,Moderate,Critical/Urgent,"Role-based access, least privilege, regular audits"
+104,Insider threat detection,Monitoring for malicious or negligent insiders,Tooling & Infrastructure,No,Moderate,High,Behavioral analytics and strict access controls
+105,Data poisoning detection,Methods to detect poisoned or malicious inputs during training,Evaluation,No,Large,High,Poison detection tools and anomalies monitoring
+106,Supply chain risk for datasets,Risks from third-party data suppliers,External Dependencies,No,Large,High,Supply chain audits and contractual safeguards
+107,Third-party model risk assessments,Evaluations of external pretrained models,External Dependencies,Partial,Moderate,High,Conduct security and safety assessments before use
+108,SBOM for ML systems,Software bill of materials for model stacks,Tooling & Infrastructure,No,Moderate,Medium,Maintain SBOMs and dependency audits
+109,Logging of data access and usage,Auditing who accessed which data and when,Tooling & Infrastructure,Partial,Moderate,High,Comprehensive access logs with retention and review
+110,Anomaly detection in training data,Automated checks for unusual data patterns,Data,No,Moderate,High,Integrate anomaly detection in data pipelines
+111,Undocumented sampling from web scrapes,Ad-hoc scraping without records or consent,Data,No,Large,Critical/Urgent,"Document scrapes, respect robots.txt and licenses"
+112,Curation for harmful content removal,"Policies for excluding hate, extremism, or illegal content from datasets",Policy,Partial,Large,Critical/Urgent,Define exclusion criteria and review processes
+113,Evaluation for hallucination propensity,Testing for tendency to invent facts,Evaluation,No,Moderate,High,Benchmark hallucinations and apply mitigations
+114,Fact-checking integration,Use of external knowledge or tools to verify outputs,Model Design,Partial,Moderate,High,Integrate retrieval and verification layers with confidence scoring
+115,Retrieval data freshness policies,How often knowledge bases used for retrieval are updated,Tooling & Infrastructure,No,Moderate,High,Define refresh cadences and stale-data mitigation
+116,Indexing and search bias,Biases introduced in retrieval/indexing pipelines,Tooling & Infrastructure,No,Moderate,High,Audit retrieval ranking and promote fairness
+117,Cold-start handling,Behavior when models encounter unseen inputs or users,Model Design,No,Moderate,Medium,Define safe defaults and unknown-handling strategies
+118,Confidence estimation methods,How the model estimates and exposes uncertainty,Model Design,Partial,Moderate,High,Calibrate and surface uncertainties to downstream systems
+119,Post-processing and filters,Rules applied to raw model outputs before delivery,Deployment Prep & Monitoring,Partial,Moderate,High,Document post-processing and test comprehensively
+120,Edge-case & outlier definitions,What counts as an outlier and how it's handled,Team & Processes,No,Moderate,High,Define outlier criteria and handling procedures
+121,Monitoring for emergent behaviors,Detection of unexpected capabilities or modes,Deployment Prep & Monitoring,No,Large,Critical/Urgent,"Horizon scanning, capability testing, and kill-switches"
+122,Capability escalation controls,Controls to limit model capability increases,Team & Processes,No,Large,Critical/Urgent,Approval gates for capability-scaling experiments
+123,Market-facing disclosure practices,What is disclosed to customers about model limits,Policy,Partial,Moderate,High,Transparent documentation and customer advisories
+124,Insurance & liability coverage,Insurance for harms caused by models,Legal/Compliance,No,Moderate,Medium,Engage insurers and define liability terms
+125,Regulatory reporting processes,How incidents are reported to authorities,Legal/Compliance,Partial,Moderate,High,Define incident reporting flows and compliance contacts
+126,Cross-jurisdictional legal compliance,Alignment with laws across countries,Legal/Compliance,Partial,Large,High,Legal reviews and localized controls
+127,Encryption for model weights,Protecting model parameters from exfiltration,Tooling & Infrastructure,No,Moderate,High,Encrypt weights at rest and use secure enclaves
+128,Model theft detection,Detecting unauthorized copies or usage of models,Tooling & Infrastructure,No,Moderate,High,Use watermarking and monitor unusual usage patterns
+129,Data minimization practices,Collecting only necessary data for purposes stated,Policy,Partial,Moderate,High,Adopt data minimization principles and audits
+130,Reproducible training pipelines,Pipelines that can be rerun to reproduce models,Tooling & Infrastructure,Partial,Moderate,Medium,Use reproducible workflows and containerization
+131,Experimental vs production labeling,Clear separation of non-prod artifacts from production,Tooling & Infrastructure,No,Moderate,High,Tag environments clearly and restrict access to prod
+132,Rollback legal implications,Legal exposure when rolling back features,Legal/Compliance,No,Small,Medium,Legal review and clear contractual terms
+133,Public safety review boards,Independent review for high-risk releases,Governance,No,Large,Critical/Urgent,Establish external review or advisory boards
+134,Internal AI governance committees,Formal governance groups overseeing AI development,Governance,Partial,Moderate,High,Empower committees with veto and audit powers
+135,Auditability of models,Ability to trace decisions and data leading to outputs,Tooling & Infrastructure,Partial,Large,Critical/Urgent,Build audit trails and explainability mechanisms
+136,Interpretability vs performance trade-offs,Decisions balancing explainability and accuracy,Model Design,No,Moderate,High,Document trade-offs and prefer interpretable options where safety-critical
+137,Staged release policies,Phased rollouts to limited audiences,Deployment Prep & Monitoring,Partial,Moderate,High,Use canary releases and monitor impacts closely
+138,User-level access controls,Granular controls for different user classes,Tooling & Infrastructure,Partial,Moderate,High,Implement RBAC and permission reviews
+139,Third-party API rate limiting,Controls on third-party access to model APIs,Tooling & Infrastructure,Partial,Moderate,High,Rate limits and abuse detection
+140,Model lifecycle documentation,Complete lifecycle records from design to retirement,Team & Processes,Partial,Moderate,High,Maintain lifecycle docs and retirement procedures
+141,Retirement & sunsetting policies,How models/data are deprecated and removed,Team & Processes,No,Moderate,Medium,Define sunset timelines and data deletion steps
+142,Fallback human review capacity,Capacity planning for human moderation under load,Deployment Prep & Monitoring,No,Moderate,High,Staffing plans and surge protocols
+143,Misuse risk assessments,Analyses of how models could be repurposed maliciously,Policy,Partial,Moderate,Critical/Urgent,Conduct misuse assessments and implement mitigations
+144,Export controls & dual-use considerations,Restrictions on exporting high-capability models,Legal/Compliance,Partial,Large,Critical/Urgent,Comply with export rules and classify sensitive tech
+145,High-risk domain restrictions,"Policies for preventing use in critical domains (e.g., healthcare, finance) without approval",Policy,No,Large,Critical/Urgent,Restrict and require domain-specific validation
+146,Accountability mechanisms,Clear responsibilities and sanctions for harms,Governance,No,Large,Critical/Urgent,Define accountability frameworks and enforcement
+147,Transparency in model capabilities,Publicly disclosing known capabilities and limits,Policy,Partial,Moderate,High,Publish capability statements and limitations
+148,Testing for discriminatory impact,Audits focused on discrimination across groups,Evaluation,No,Large,Critical/Urgent,Regular discrimination testing and remediation plans
+149,Simulated adversary coverage,Range and depth of adversary models used in testing,Evaluation,No,Moderate,High,Broaden adversary scenarios and document gaps
+150,Internal safety milestone gating,Safety milestones required before progressing projects,Governance,No,Moderate,Critical/Urgent,Require documented safety milestones and sign-offs
+151,Third-party audits & certifications,External assessments of practices and models,Governance,Partial,Moderate,High,Engage accredited auditors and remediate findings
+152,Open vs closed model policy,Decisions to open-source vs keep closed,Policy,Partial,Large,High,Risk-based release strategy with staged openness
+153,Data lineage for fine-tuning sources,Traceability of fine-tune dataset origins,Data,No,Moderate,High,Maintain lineage records for all fine-tune data
+154,Legal risk modeling,Assessments of legal exposure for model behaviors,Legal/Compliance,No,Moderate,High,Legal risk assessments integrated into development
+155,Stakeholder engagement practices,Consultation with impacted communities,Team & Processes,No,Large,High,Engage stakeholders early and iteratively
+156,Compensated community participation,Paying communities for data and feedback,Team & Processes,No,Moderate,Medium,Fair compensation and clear agreements
+157,Compromise risk from public demos,What is exposed during demos and prototypes,Policy,No,Moderate,High,"Limit demos, use sanitized data, NDAs"
+158,Data retention of training telemetry,How long training logs and telemetry are kept,Tooling & Infrastructure,Partial,Moderate,Medium,Set retention limits and secure archives
+159,Use of underground or illicit data sources,Inadvertent inclusion of stolen or illicit data,Data,No,Large,Critical/Urgent,Vet sources and remove illicit data promptly
+160,Corporate incentives for speed vs safety,Organizational KPIs that prioritize rapid release,Team & Processes,No,Large,Critical/Urgent,Align incentives with safety metrics and balanced KPIs
+161,Exportability of models to uncontrolled environments,Ease of running models offline or in unsafe contexts,Tooling & Infrastructure,No,Large,High,Restrict distribution and monitor model exports
+162,User personalization practices,How models personalize behavior to individual users,Model Design,Partial,Moderate,High,Privacy-safe personalization and opt-outs
+163,Targeted manipulation risk,Risk of models being used to manipulate specific groups,Policy,No,Large,Critical/Urgent,Limit targeting capabilities and monitor misuse
+164,Reinforcement learning reward model transparency,Visibility into reward model data and alignment,Model Design,No,Large,High,Document reward datasets and alignment processes
+165,Proxy metric overfitting,Optimization to metrics that don't reflect real value,Evaluation,No,Moderate,High,Use diverse real-world metrics and human evaluation
+166,Use of clandestine data pipelines,Hidden ETL pipelines sourcing data without oversight,Tooling & Infrastructure,No,Large,Critical/Urgent,Audit pipelines and require approvals for new sources
+167,Credential leakage in datasets,"Accidental inclusion of passwords, tokens, or secrets",Data,Partial,Large,Critical/Urgent,Scan datasets for secrets and remove immediately
+168,Model prompt-injection defenses,Protections against malicious prompts altering behavior,Model Design,No,Large,High,Implement injection detection and policy enforcement
+169,Testing for instruction-following misuse,Assessing propensity to follow harmful instructions,Evaluation,No,Large,Critical/Urgent,Test instruction scenarios and limit dangerous capabilities
+170,Third-party content moderation reliance,Dependence on external moderation providers,External Dependencies,Partial,Moderate,High,Vet providers and have redundancy
+171,Internal policy enforcement mechanisms,How policies are enforced internally,Governance,No,Moderate,High,"Define enforcement, audits, and consequences"
+172,Safety budgeting in product planning,Allocation of time and funds for safety work,Team & Processes,No,Moderate,High,Require safety budgets in project plans
+173,Supply-chain provenance of compute hardware,Origin and security of training hardware,Tooling & Infrastructure,No,Moderate,Medium,Track hardware provenance and secure firmware
+174,Use of public vs private cloud resources,Location and controls around compute environments,Tooling & Infrastructure,Partial,Moderate,Medium,Apply consistent security controls across clouds
+175,Model fine-grain access logging,Per-inference logs for who called what model,Tooling & Infrastructure,No,Moderate,High,Implement detailed access logs with alerts
+176,Statistical disclosure risk assessments,Evaluating risk of re-identification from outputs,Data,No,Moderate,High,Perform disclosure risk analysis pre-release
+177,Content provenance for training images,Source verification for image datasets,Data,No,Moderate,High,Require source metadata and provenance checks
+178,Copyright takedown response processes,Handling requests to remove copyrighted material used in models,Legal/Compliance,Partial,Moderate,Medium,Define takedown workflows and responsiveness
+179,Model output liability tracing,Ability to trace harmful output to training causes,Tooling & Infrastructure,No,Large,Critical/Urgent,Invest in causal traceability and logging
+180,Operator training for model oversight,Training ops staff on safety monitoring,Team & Processes,Partial,Moderate,High,Provide role-based training and simulations
+181,Standards for high-risk use approvals,Criteria and process to approve high-risk deployments,Governance,No,Large,Critical/Urgent,Formal approval boards and documented criteria
+182,Transparency around safety failures,Disclosure of incidents and mitigations,Policy,No,Large,High,Publish post-incident reports and remediation steps
+183,Independent safety research access,Access provisions for external researchers to probe models,Policy,Partial,Moderate,Medium,Define safe research access programs with controls
+184,Testing for economic harms,Assessing impacts like job displacement or market manipulation,Evaluation,No,Large,Medium,Include economic impact assessments for high-impact systems
+185,Cultural sensitivity reviews,Assessing outputs for cultural offensiveness or harm,Evaluation,No,Moderate,High,Engage cultural experts and include reviews in testing
+186,Translation and localization validation,Validating model behavior after localization,Evaluation,No,Moderate,High,Local testing and native-speaker reviews
+187,Testing for legal/regulatory compliance,Pre-release checks against relevant laws,Legal/Compliance,Partial,Moderate,High,Legal sign-offs and compliance checklists
+188,Use of human feedback datasets,Collection and curation of human preference data,Data,Partial,Moderate,High,Audit HF data for bias and consent
+189,Metrics for long-term harms,Measuring harms that unfold over time,Evaluation,No,Large,High,Develop longitudinal monitoring and indicators
+190,Social engineering vulnerability testing,Assessing model use in social-engineering attacks,Evaluation,No,Large,High,Simulate attacks and harden systems
+191,Dependency on large proprietary corpora,Reliance on massive opaque datasets,Data,No,Large,Critical/Urgent,Increase transparency and diversify sources
+192,Confidential data leakage testing,Assessing risk models reveal confidential corpora content,Evaluation,No,Large,Critical/Urgent,Perform extraction tests and privacy evaluation
+193,Alignment evaluation benchmarks,Benchmarks specifically for alignment and goal-directed safety,Evaluation,No,Moderate,Critical/Urgent,Develop alignment benchmarks and require passing thresholds
+194,Certification of high-risk models,Formal third-party certification frameworks,Governance,No,Large,Critical/Urgent,Advocate for certification standards and adopt them
+195,Policy for low-likelihood high-impact scenarios,Planning for rare catastrophic failures,Governance,No,Large,Critical/Urgent,Scenario planning and runbooks for extreme events
+196,Internal model threat intelligence,Collecting and sharing intel on emerging threats to models,Governance,No,Moderate,High,Establish threat intel functions and info sharing
+197,Model usage billing incentives,Pricing models that incentivize risky usage patterns,Policy,No,Moderate,Medium,Align pricing to discourage high-risk uses
+198,Aggregate vs individual-level testing,"Ensuring tests cover individual-level harms, not only aggregates",Evaluation,No,Moderate,High,Include micro-level audits and case studies
+199,Testing for persuasion & influence,Assessing capacity to persuade or manipulate users,Evaluation,No,Large,Critical/Urgent,Benchmark persuasion risks and restrict high-risk deployments
+200,Automated policy enforcement tools,Tools that apply content/policy rules at scale,Tooling & Infrastructure,Partial,Moderate,High,Develop robust rule engines with human review loops
+201,Model behavior under resource constraints,Behavior when CPU/memory limits affect outputs,Model Design,No,Moderate,Medium,Test under constrained environments and define safe degradation
+202,Dataset licensing traceability,Ability to show chain of licenses for dataset components,Legal/Compliance,No,Moderate,High,Maintain license manifests and provenance records
+203,Use of copyrighted code corpora,Training on source code with license implications,Data,Partial,Large,High,Track code sources and honor licenses
+204,Experiment approval workflows,Formal approvals before risky experiments,Team & Processes,No,Moderate,High,Enforce approval gates with documented risk assessments
+205,Model output sanitization defaults,Default behaviors that sanitize or redact outputs,Deployment Prep & Monitoring,No,Moderate,High,Configure safe defaults and require explicit opt-in to disable
+206,Human subject protections in user studies,Protections when involving human participants,Legal/Compliance,Partial,Moderate,High,IRB-like reviews and consent procedures
+207,Competency requirements for safety reviewers,Qualifications for those approving safety gates,Governance,No,Moderate,High,Define competency standards and training for reviewers
+208,Public incident disclosure thresholds,When to publicly disclose incidents,Policy,No,Moderate,High,Define thresholds and disclosure processes
+209,Model update provenance,Tracing what changed between model versions,Tooling & Infrastructure,Partial,Moderate,High,Changelogs and diffs for models and datasets
+210,Differential access to safety features,Some customers get safety features others do not,Policy,No,Moderate,High,Standardize safety features and avoid privileged exemptions
+211,User education materials about limits,Guidance provided to end users on model capabilities,Policy,Partial,Moderate,Medium,Provide clear user guides and disclaimers
+212,Supply chain contractual clauses,Contracts with suppliers covering safety and provenance,Legal/Compliance,Partial,Moderate,High,"Include safety, audit, and liability clauses in contracts"
+213,Internal KPI measurement of safety work,How organizations measure safety effort success,Team & Processes,No,Moderate,High,Define KPIs tied to outcomes and audits
+214,Model retirement data sanitization,Removing models and associated data securely,Tooling & Infrastructure,No,Moderate,Medium,Secure deletion and archival policies
+215,External communication strategies for harms,PR and comms approach when harms occur,Policy,No,Moderate,Medium,Predefine comms templates and roles
+216,Testing for emergent multi-step behaviors,Assessing models for planning or long-horizon capabilities,Evaluation,No,Large,Critical/Urgent,Test multi-step planning tasks and limit capabilities
+217,Access to model internals for regulators,Providing regulators with access to models for oversight,Governance,No,Large,High,Establish secure regulator access provisions and data sharing agreements
+218,Data subject rights handling,"Mechanisms to handle deletion, access requests from individuals",Legal/Compliance,Partial,Moderate,High,Implement DSAR processes and interfaces
+219,Undocumented incentives in research funding,Funding rules that bias toward sensational results,Team & Processes,No,Moderate,Medium,Promote funding for safety and replication studies
+220,Use of heuristics in data cleaning,Manual heuristics applied during preprocessing without docs,Data,No,Moderate,High,Document heuristics and test impacts
+221,Model prompt engineering corpora leakage,Risk that internal prompt libraries leak and reveal unsafe steering,Tooling & Infrastructure,No,Moderate,High,"Restrict access, log usage, and redact sensitive prompts"
+222,Testing for co-adaptation with user behavior,Assessing models that adapt to users and create dependency loops,Evaluation,No,Large,High,Simulate long-term interactions and assess feedback loops
+223,Model performance equity metrics,Measures for equitable performance across groups,Evaluation,No,Large,Critical/Urgent,Include equity metrics in acceptance criteria
+224,Governance for emergent capability discovery,Processes to handle discovery of capabilities not anticipated,Governance,No,Large,Critical/Urgent,Require immediate escalation and capability pause procedures
+225,Policies for dataset deletion requests,Handling requests to remove data from training corpora,Legal/Compliance,Partial,Moderate,High,Define deletion workflows and communication processes
+226,Testing for privacy leakage via APIs,Assessing whether API outputs leak training data,Evaluation,No,Large,Critical/Urgent,Perform extraction tests and limit verbose outputs
+227,Standards for multi-stakeholder audits,Frameworks for involving external stakeholders in audits,Governance,No,Moderate,High,Develop standards and include community reps in audits
+228,Metrics for societal-scale harms,Measuring impacts like misinformation spread or social destabilization,Evaluation,No,Large,Critical/Urgent,Develop macro-level monitoring and partnerships with researchers
+229,Product design choices that encourage risky use,UX patterns that nudge users to risky behaviors,Model Design,No,Large,High,Apply ethical UX review and nudge audits
+230,Access to model debugging tools,Who can use internal debuggers that reveal model internals,Tooling & Infrastructure,No,Moderate,High,Restrict debug tools to vetted staff and log usage
+231,Interdependence of multiple models,Risks when several models interact in a system,Model Design,No,Moderate,High,Test interactions end-to-end and simulate cascades
+232,Default opt-in vs opt-out for data collection,Whether users are auto-enrolled in data sharing,Policy,No,Moderate,High,Prefer opt-in and clear consent for data collection
+233,Granularity of monitoring metrics,Level of detail captured for monitoring model behavior,Tooling & Infrastructure,Partial,Moderate,High,Capture fine-grained metrics but balance privacy
+234,Legal jurisdiction for contracts with vendors,Governing law clauses affecting enforcement,Legal/Compliance,Partial,Small,Medium,Use favorable jurisdictions and clear dispute resolution
+235,Ethics review committee independence,Degree to which ethics boards are independent from product teams,Governance,No,Moderate,High,Ensure independence and external membership
+236,Mechanisms to prevent model laundering,Preventing transfer of capabilities through intermediate releases,Policy,No,Large,Critical/Urgent,Track capability lineage and control staged releases
+237,Testing for long-term reward hacking,Assessing whether models find undesirable long-term strategies,Evaluation,No,Large,Critical/Urgent,Simulate long-horizon optimization and include constraint checks
+238,Use of private communications corpora,"Training on emails, chats, or messages without consent",Data,No,Large,Critical/Urgent,Exclude private communications unless consent obtained and protected
+239,Standards for labeling sensitive categories,"How to label trauma, sexual content, medical info safely",Data,No,Moderate,High,Consult domain experts and create sensitive labeling protocols
+240,Provenance of scraped datasets,Traceable lineage from web scraping to training use,Data,No,Large,Critical/Urgent,Maintain scrape manifests and legal reviews
